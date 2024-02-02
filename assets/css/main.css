@@ -213,7 +213,6 @@ header nav ul li.menu-item-has-children ul li.menu-item-has-children ul{
 .hero-slider{
   position: relative;
   height: 60vh;
-  overflow: hidden;
 }
 
 .hero-slider .slide{
@@ -281,8 +280,12 @@ header nav ul li.menu-item-has-children ul li.menu-item-has-children ul{
   float: right;
   background-size: cover;
   background-position: center;
-  overflow: hidden;
   position: relative;
+  border-radius: 35px;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 35px;
+  -ms-border-radius: 35px;
+  -o-border-radius: 35px;
 }
 
 .hero-slider .slide.active .image{
@@ -292,11 +295,6 @@ header nav ul li.menu-item-has-children ul li.menu-item-has-children ul{
 .hero-slider .slide .image:not(.hero-slider .slide.active .image){
   width: 100%;
   height: 100%;
-  border-radius: 35px;
-  -webkit-border-radius: 35px;
-  -moz-border-radius: 35px;
-  -ms-border-radius: 35px;
-  -o-border-radius: 35px;
 }
 
 .hero-slider .slide .image:after{
@@ -308,6 +306,11 @@ header nav ul li.menu-item-has-children ul li.menu-item-has-children ul{
   left: 0;
   top: 0;
   opacity: 0;
+  border-radius: 35px;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 35px;
+  -ms-border-radius: 35px;
+  -o-border-radius: 35px;
 }
 
 
@@ -382,15 +385,35 @@ header nav ul li.menu-item-has-children ul li.menu-item-has-children ul{
   -o-border-radius: 19px;
 }
 
+.popup-image.bigger{
+  max-width: 300px;
+  left: -100px;
+  bottom: 0px;
+}
+
+.popup-image.xl{
+  max-width: 350px;
+  left: -100px;
+}
+
+.popup-image.full{
+  max-width: 350px;
+  left: auto;
+  right: -30px;
+  bottom: auto;
+  top: -50px;
+}
 
 .hero-slider .slide h1{
   font-size: 60px;
+  line-height: 55px;
 }
 
 .hero-slider .slide h2{
   font-size: 40px;
   opacity: .5;
   font-family: 'db_heaventlight';
+  margin-bottom: 15px;
 }
 .hero-slider .slide h3{
   font-size: 30px;
