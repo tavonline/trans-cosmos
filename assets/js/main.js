@@ -20,47 +20,28 @@ $(document).ready(function(){
 
         sliderOrder();
 
-        gsap.set($('.hero-slider .slide:not(.hero-slider .slide:first)').find('.slider-caption h2, .slider-caption .category'), { autoAlpha:0 })
-
-        $('.hero-slider .slide').on('click', function(){
-        gsap.set($(this).find('a'), { 'display':'inline-block'})
-        gsap.set($('.hero-slider .slide:not(.hero-slider .slide:first)').find('.slider-caption h2, .slider-caption .category'), { autoAlpha:0 })
-
-        gsap.set($('.hero-slider .slide'), { 'pointer-events': 'none' })
-
-        gsap.set($(this), {'z-index': '2' })
-
-        gsap.to( $(this).prevAll().find('.category') , {delay:.8, clearProps: 'all'})
-        gsap.to( $(this).prevAll().find('h2') , {delay:.8, clearProps: 'all'})
-        gsap.to( $(this).prevAll().find('.letter') , {delay:.8, clearProps: 'all'})
-
-        gsap.to($(this).find('.letter'), { autoAlpha:0 })
-        gsap.to($(this).find('.slider-caption .category'), { autoAlpha:1, x:0, delay:.3, duration:.8})
-        gsap.to($(this).find('.slider-caption h2'), { autoAlpha:1, x:0, delay:.5, duration:.8})
-
-        if(($(window).width()) > 1024){
-          gsap.to($(this), {'width': '60%', left: 0 })
-        }
-          
-        gsap.set($(this).nextAll().find('a'), { 'display':'none'})
-        gsap.set($(this).nextAll().find('.overlay'), { clearProps: 'all'})
-        gsap.to($(this).find('.overlay'), {autoAlpha:0 })
-
-        if ($(window).width() > 1024) {
-          transportAmount =  10;
-        }     
-
-        gsap.to($(this).nextAll(), { right: '+=' +  $(this).index() * transportAmount + '%' });
+  
+ $('.hero-slider .slide').on('click', function(){
 
 
-        gsap.to($('.hero-slider .slide'), {delay:.8, clearProps: 'transform'})
+  var sliderAnime = gsap.timeline({yoyo: false, reversed: true});
+  sliderAnime.pause();
 
-        setTimeout(() => {
-        $(this).prevAll().removeAttr('style');
-        sliderOrder();
-          gsap.set($('.hero-slider .slide'), { 'pointer-events': 'all' })
-        }, 1000);
+  sliderAnime.to($('.hero-slider .slide.active'), {right: $(this).css('right'), width: '9%', position: 'absolute'}, 0.1);
+  sliderAnime.set($('.hero-slider .slide.active'), {left:'auto'}, 0.2);
+  sliderAnime.to($('.hero-slider .slide.active').find('.slide-content'), {autoAlpha:0, position:'absolute' }, 0.1);
+  sliderAnime.to($('.hero-slider .slide.active').find('.image'), {'border-radius':'35px', width:'100%', duration: 0.5 }, 0.1);
+  
+  sliderAnime.to($(this), {width: '60%', left: 0, duration: 0.5 }, 0.1);
+  sliderAnime.to($(this).find('.slide-content'), {width: '50%', duration: 0.5 }, 0.1);
+  sliderAnime.to($(this).find('.image'), {width: '50%', float: 'right', 'border-radius': '0', duration: 0.5 }, 0.1);
+  sliderAnime.to($(this).find('.slide-content'), {position: 'relative', autoAlpha: 1, duration: 0.5 });
+  sliderAnime.from($(this).find('.slide-content h1'), {x:-100, autoAlpha:0, duration: 0.5 });
 
+  sliderAnime.play();
+
+  $('.hero-slider .slide').removeClass('active');
+  $(this).addClass('active');
         });
 
 });

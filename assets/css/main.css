@@ -228,11 +228,13 @@ header nav ul li.menu-item-has-children ul li.menu-item-has-children ul{
   top: 0;
 }
 
-.hero-slider .slide:first-child{
-  pointer-events: none;
+.hero-slider .slide.active{
   width: calc(100% - 40%);
   position: relative;
-  
+}
+
+.hero-slider .slide.active{
+  pointer-events: none;
 }
 
 .hero-slider .slide:not(.hero-slider .slide:nth-child(1)){
@@ -240,7 +242,7 @@ header nav ul li.menu-item-has-children ul li.menu-item-has-children ul{
   box-sizing: border-box;
 }
 
-.hero-slider .slide:nth-child(1) .slide-content{
+.hero-slider .slide.active .slide-content{
   position: relative;
   opacity: 1;
 }
@@ -277,7 +279,7 @@ header nav ul li.menu-item-has-children ul li.menu-item-has-children ul{
 }
 
 
-.hero-slider .slide .image:not(.hero-slider .slide:nth-child(1) .image){
+.hero-slider .slide .image:not(.hero-slider .slide.active .image){
   width: 100%;
   height: 100%;
   border-radius: 35px;
@@ -287,7 +289,7 @@ header nav ul li.menu-item-has-children ul li.menu-item-has-children ul{
   -o-border-radius: 35px;
 }
 
-.hero-slider .slide .image:not(.hero-slider .slide:nth-child(1) .image):after{
+.hero-slider .slide .image:not(.hero-slider .slide.active .image):after{
   content: '';
   width: 100%;
   height: 100%;
@@ -295,6 +297,14 @@ header nav ul li.menu-item-has-children ul li.menu-item-has-children ul{
   position: absolute;
   left: 0;
   top: 0;
+}
+
+.hero-slider .slide .image:after{
+  transition: all ease .3s;
+  -webkit-transition: all ease .3s;
+  -moz-transition: all ease .3s;
+  -ms-transition: all ease .3s;
+  -o-transition: all ease .3s;
 }
 
 .hero-slider .slide .vertical-caption{
@@ -312,7 +322,7 @@ header nav ul li.menu-item-has-children ul li.menu-item-has-children ul{
   color: #fff;
 }
 
-.hero-slider .slide:nth-child(1) .vertical-caption{
+.hero-slider .slide.active .vertical-caption{
   opacity: 0;
 }
 
