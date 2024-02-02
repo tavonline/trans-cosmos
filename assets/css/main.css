@@ -232,6 +232,7 @@ header nav ul li.menu-item-has-children ul li.menu-item-has-children ul{
   top: 0;
 }
 
+
 .hero-slider .slide.active{
   width: calc(100% - 40%);
   position: relative;
@@ -307,6 +308,11 @@ header nav ul li.menu-item-has-children ul li.menu-item-has-children ul{
   left: 0;
   top: 0;
   opacity: 0;
+}
+
+
+.hero-slider .slide:hover .image:after{
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .hero-slider .slide .image:not(.hero-slider .slide.active .image):after{
