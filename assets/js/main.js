@@ -3,41 +3,64 @@
 
 $(document).ready(function(){
 
-function orderSlides(){
     var slides = document.querySelectorAll('.hero-slider .slide');
 
-    for (let i = 1; i < slides.length; i++) {
-        var rightValue = -9 + (9 * i);
-        slides[i].style.right = `${rightValue}%`;
-      }
-}
+        function sliderOrder(){
+            function slidePosition(){
+              if(($(window).width()) > 1024){
+                for (let i = 1; i < slides.length; i++) {
+                  var rightValue = 40 - (10 * i);
+                  slides[i].style.right = `${rightValue}%`;
+                }
+              }
 
-orderSlides();
+            }   
+            slidePosition();
+        }
 
-            $(".hero-slider .slide").on("click", function(){
-                $(this).prevAll()
-                gsap.set(this, { 'z-index':'2'});
-                gsap.to(".hero-slider .slide:first-child", { autoAlpha:0, duration: 0.5 });
-                gsap.to(this, { width: "62%",  left:0, delay:.5, duration: 0.7});
-                setTimeout(() => {
-                    $(this).addClass('active');
-                }, 500);
+        sliderOrder();
 
-                setTimeout(() => {
-                    $(this).prependTo(".hero-slider");
-                    $(".hero-slider .slide:last-child").appendTo(".hero-slider");
-                    $('.hero-slider .slide').removeClass('disabled');
-                    gsap.set($('.hero-slider .slide'), {clearProps: 'all'})
-                    orderSlides();
-                    $(this).removeClass('active');
-                }, 1000);
+        gsap.set($('.hero-slider .slide:not(.hero-slider .slide:first)').find('.slider-caption h2, .slider-caption .category'), { autoAlpha:0 })
 
-                
-                gsap.to($(this).prevAll(), { right: '+=' +  ($(this).index() - 2) * 9 + '%' });
+        $('.hero-slider .slide').on('click', function(){
+        gsap.set($(this).find('a'), { 'display':'inline-block'})
+        gsap.set($('.hero-slider .slide:not(.hero-slider .slide:first)').find('.slider-caption h2, .slider-caption .category'), { autoAlpha:0 })
 
-                setTimeout(() => {
-                    $(this).nextAll().addClass('disabled');
-                }, 900);
-            });
+        gsap.set($('.hero-slider .slide'), { 'pointer-events': 'none' })
+
+        gsap.set($(this), {'z-index': '2' })
+
+        gsap.to( $(this).prevAll().find('.category') , {delay:.8, clearProps: 'all'})
+        gsap.to( $(this).prevAll().find('h2') , {delay:.8, clearProps: 'all'})
+        gsap.to( $(this).prevAll().find('.letter') , {delay:.8, clearProps: 'all'})
+
+        gsap.to($(this).find('.letter'), { autoAlpha:0 })
+        gsap.to($(this).find('.slider-caption .category'), { autoAlpha:1, x:0, delay:.3, duration:.8})
+        gsap.to($(this).find('.slider-caption h2'), { autoAlpha:1, x:0, delay:.5, duration:.8})
+
+        if(($(window).width()) > 1024){
+          gsap.to($(this), {'width': '60%', left: 0 })
+        }
+          
+        gsap.set($(this).nextAll().find('a'), { 'display':'none'})
+        gsap.set($(this).nextAll().find('.overlay'), { clearProps: 'all'})
+        gsap.to($(this).find('.overlay'), {autoAlpha:0 })
+
+        if ($(window).width() > 1024) {
+          transportAmount =  10;
+        }     
+
+        gsap.to($(this).nextAll(), { right: '+=' +  $(this).index() * transportAmount + '%' });
+
+
+        gsap.to($('.hero-slider .slide'), {delay:.8, clearProps: 'transform'})
+
+        setTimeout(() => {
+        $(this).prevAll().removeAttr('style');
+        sliderOrder();
+          gsap.set($('.hero-slider .slide'), { 'pointer-events': 'all' })
+        }, 1000);
 
         });
+
+});
