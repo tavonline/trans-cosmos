@@ -23,7 +23,7 @@ $(document).ready(function(){
   
  $('.hero-slider .slide').on('click', function(){
 
-
+  gsap.set($('.hero-slider .slide'), { 'pointer-events': 'none' });
   var sliderAnime = gsap.timeline({yoyo: false, reversed: true});
   sliderAnime.pause();
 
@@ -47,6 +47,7 @@ $(document).ready(function(){
   setTimeout(() => {
     $('.hero-slider .slide').removeClass('active');
     $(this).addClass('active');
+    gsap.set($('.hero-slider .slide'), { 'pointer-events': 'all' })
   }, 1400);
 
 
