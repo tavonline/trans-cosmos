@@ -35,7 +35,7 @@ $(document).ready(function(){
    sliderAnime.set($('.hero-slider .slide.active'), {left:'auto',},.9);
    sliderAnime.to($('.hero-slider .slide.active').find('.image'), {'border-radius':'35px', width:'100%', duration: 0.5 },.9);
   
-   sliderAnime.to($(this).find('.slide-content'), {width: '45%', duration: 0.5 },.9);
+   sliderAnime.to($(this).find('.slide-content'), {width: '45%', autoAlpha:0, duration: 0.5 },.9);
    sliderAnime.to($('.hero-slider .slide.active').find('.slide-content'), {'position':'absolute', ease: "Expo.easeInOut",},0.9);
    sliderAnime.to($(this).find('.image'), {width: '45%', float: 'right', duration: 0.5 },.9);
    sliderAnime.to($(this).find('.slide-content'), {position: 'relative', autoAlpha: 1, duration: 0.5 },1.5);

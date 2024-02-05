@@ -17,6 +17,22 @@ module.exports = {
       },
     ],
   },
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images',
+            },
+          },
+        ],
+      },
+    ],
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html', // HTML dosyanızın yolu
