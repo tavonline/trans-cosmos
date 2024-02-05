@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -15,23 +16,11 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
-      {
-        test: /\.(png|jpg|gif)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'images',
-            },
-          },
-        ],
-      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'index.html', // HTML dosyanızın yolu
+      template: 'src/template.html', // HTML dosyanızın yolu
       filename: 'index.html', // Üretilen HTML dosyasının adı
       minify: {
         collapseWhitespace: true,
@@ -41,6 +30,11 @@ module.exports = {
         removeStyleLinkTypeAttributes: true,
         useShortDoctype: true,
       },
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/img', to: 'img' },
+      ],
     }),
     new webpack.ProvidePlugin({
         $: 'jquery',

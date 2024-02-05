@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
-import '../assets/css/main.css';
-import '../assets/font/stylesheet.css';
-import '../assets/css/bootstrap-grid.min.css';
-import '../assets/js/main.js';
-import '../assets/js/gsap.min.js';
+import './css/main.css';
+import './font/stylesheet.css';
+import './css/bootstrap-grid.min.css';
+import './js/main.js';
+import './js/gsap.min.js';
